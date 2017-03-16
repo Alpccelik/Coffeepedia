@@ -1,10 +1,9 @@
-package coffeepedia.example.Service;
+package coffeepedia.example.service;
 
-import coffeepedia.example.Dao.CoffeeDao;
-import coffeepedia.example.Entity.Coffee;
+import coffeepedia.example.dao.CoffeeDao;
+import coffeepedia.example.entity.Coffee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 

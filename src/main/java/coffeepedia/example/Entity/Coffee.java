@@ -1,4 +1,4 @@
-package coffeepedia.example.Entity;
+package coffeepedia.example.entity;
 
 import com.sun.istack.internal.Nullable;
 

@@ -1,9 +1,8 @@
-package coffeepedia.example.Controller;
+package coffeepedia.example.controller;
 
-import coffeepedia.example.Entity.Coffee;
-import coffeepedia.example.Service.CoffeeService;
+import coffeepedia.example.entity.Coffee;
+import coffeepedia.example.service.CoffeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,10 +1,9 @@
-package coffeepedia.example.Dao;
+package coffeepedia.example.dao;
 
-import coffeepedia.example.Entity.Coffee;
+import coffeepedia.example.entity.Coffee;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
