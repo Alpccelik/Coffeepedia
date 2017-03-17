@@ -1,7 +1,7 @@
-package coffeepedia.example.controller;
+package alpcelik.coffeepedia.controller;
 
-import coffeepedia.example.entity.Coffee;
-import coffeepedia.example.service.CoffeeService;
+import alpcelik.coffeepedia.entity.Coffee;
+import alpcelik.coffeepedia.service.CoffeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

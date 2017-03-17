@@ -1,6 +1,6 @@
-package coffeepedia.example.dao;
+package alpcelik.coffeepedia.dao;
 
-import coffeepedia.example.entity.User;
+import alpcelik.coffeepedia.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;

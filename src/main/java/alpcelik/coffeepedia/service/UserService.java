@@ -1,7 +1,7 @@
-package coffeepedia.example.service;
+package alpcelik.coffeepedia.service;
 
-import coffeepedia.example.dao.UserDao;
-import coffeepedia.example.entity.User;
+import alpcelik.coffeepedia.dao.UserDao;
+import alpcelik.coffeepedia.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package coffeepedia.example.entity;
+package alpcelik.coffeepedia.entity;
 
 /**
  * Created by alp on 12/03/17.

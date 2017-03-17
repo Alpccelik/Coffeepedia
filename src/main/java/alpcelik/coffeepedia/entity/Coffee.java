@@ -1,4 +1,4 @@
-package coffeepedia.example.entity;
+package alpcelik.coffeepedia.entity;
 
 import com.sun.istack.internal.Nullable;
 
