@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-/**
- * Created by alp on 13/03/17.
- */
 @RestController
 @RequestMapping("/coffees")
 public class CoffeeController {
@@ -20,7 +17,6 @@ public class CoffeeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Coffee> getAllCoffees(){
-
         return coffeeService.getAllCoffees();
 
     }

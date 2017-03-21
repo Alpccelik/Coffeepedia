@@ -32,4 +32,11 @@ public class UserService {
     public void insertUser(User user) {
         this.userDao.insertUserToDb(user);
     }
+
+    public User findOneById(int id) {
+
+        return this.userDao.findOneById(id);
+
+    }
+
 }

@@ -10,7 +10,6 @@ import java.util.Map;
 /**
  * Created by alp on 12/03/17.
  */
-
 @Repository
 public class CoffeeDao {
 
@@ -19,14 +18,10 @@ public class CoffeeDao {
     static {
 
         coffees=new HashMap<Integer, Coffee>(){
-
             {
                 put(1,new Coffee(1,"Espresso","primary",false));
                 put(2,new Coffee(2,"filter","primary",false));
                 put(3,new Coffee(3,"V60","primary",false));
-
-
-
             }
         };
     }

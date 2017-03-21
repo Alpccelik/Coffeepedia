@@ -21,8 +21,8 @@ public class UserDao {
         users=new HashMap<Integer, User>(){
 
             {
-                put(1,new User(1,"Alp","Krups",0));
-                put(2,new User(2,"Bugra","Delongi",0));
+                put(1, new User(1, "Alp", "alpcelik3@gmail.com", "denem123", "Krups", 0));
+                put(2, new User(2, "Bugra", "bugra@gmail.com", "denem123", "Delongi", 0));
 
 
             }
@@ -42,6 +42,10 @@ public class UserDao {
         this.users.remove(id);
     }
 
+    public User findOneById(int id) {
+        return this.users.get(id);
+    }
+
     public void updateUser(User user){
         User u=users.get(user.getUserID());
         u.setUserName(user.getUserName());
@@ -51,4 +55,6 @@ public class UserDao {
 
     public void insertUserToDb(User user) {this.users.put(user.getUserID(),user);
     }
+
+
 }
