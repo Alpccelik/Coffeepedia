@@ -2,11 +2,13 @@ package alpcelik.coffeepedia.config.security;
 
 import alpcelik.coffeepedia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-/**
- * Created by alp on 20/03/17.
- */
-public class CustomUserDetailsService {
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
     private UserService userService;
 
     @Autowired
@@ -14,5 +16,8 @@ public class CustomUserDetailsService {
         this.userService = userService;
     }
 
-
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return userService.getByUsername(s);
+    }
 }

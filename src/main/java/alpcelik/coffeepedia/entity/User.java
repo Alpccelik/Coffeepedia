@@ -1,99 +1,118 @@
 package alpcelik.coffeepedia.entity;
 
 import alpcelik.coffeepedia.enums.UserRole;
-import com.sun.istack.internal.NotNull;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.Entity;
+import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-/**
- * Created by alp on 12/03/17.
- */
-public class User {
-    @NotNull
-    private int userID;
-
-    @NotNull
-    private String userName;
-
-    @NotNull
-    private String userEmail;
-
-    @NotNull
-    private String userPass;
-
-    private String userCoffeMachine;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
+@Entity
+public class User implements UserDetails {
+    private Integer id;
+    private String username;
+    private String email;
+    private String password;
+    private String coffeeMachine;
     private Set<UserRole> roles;
+    private Integer userPoint = 0;
 
-    private int userPoint;
+    public User() {
+    }
 
-    public User(int userID, String userName, String userEmail, String userPass, String userCoffeMachine, int userPoint) {
-        this.userID = userID;
-        this.userName = userName;
-        this.userCoffeMachine = userCoffeMachine;
-        this.userPoint = userPoint;
-        this.userEmail = userEmail;
+    public User(Integer id, String username, String email, String password, String coffeeMachine, Set<UserRole> roles, Integer userPoint) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.coffeeMachine = coffeeMachine;
         this.roles = roles;
-        this.userPass = userPass;
+        this.userPoint = userPoint;
     }
 
-    public int getUserID() {
-        return userID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    @Override
+    public String getUsername() {
+        return this.username;
     }
 
-    public String getUserPass() {
-        return userPass;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getEmail() {
+        return email;
     }
 
-    public String getUserCoffeMachine() {
-        return userCoffeMachine;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setUserCoffeMachine(String userCoffeMachine) {
-        this.userCoffeMachine = userCoffeMachine;
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
-    public int getUserPoint() {
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getCoffeeMachine() {
+        return coffeeMachine;
+    }
+
+    public void setCoffeeMachine(String coffeeMachine) {
+        this.coffeeMachine = coffeeMachine;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles.stream().map(r -> new SimpleGrantedAuthority("ROLE_" + r.name())).collect(Collectors.toList());
+    }
+
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
+
+    public Integer getUserPoint() {
         return userPoint;
     }
 
-    public void setUserPoint(int userPoint) {
+    public void setUserPoint(Integer userPoint) {
         this.userPoint = userPoint;
     }
 
-    public User(String userEmail) {
-        this.userEmail = userEmail;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
-
-
-    public User(){};
-
 }

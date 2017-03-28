@@ -38,6 +38,7 @@ public class CoffeeController {
     @RequestMapping(method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertCoffee(@RequestBody Coffee coffee){
         coffeeService.insertCoffee(coffee);
+
     }
 
 
