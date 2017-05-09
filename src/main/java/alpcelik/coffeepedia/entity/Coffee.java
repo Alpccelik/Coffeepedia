@@ -6,29 +6,29 @@ import com.sun.istack.internal.Nullable;
  * Created by alp on 12/03/17.
  */
 public class Coffee {
-    private int coffeeid;
+    private Integer id;
     private String Coffeename;
     private boolean Milkinside;
     private String Coffeekind;
 
 
-
-    public Coffee(int coffeeid, String coffeename, String coffeekind, boolean milkinside) {
-        this.coffeeid = coffeeid;
-        Coffeename = coffeename;
-        Coffeekind = coffeekind;
-        Milkinside= milkinside;
+    public Coffee(Integer id, String coffeename, String coffeekind, boolean milkinside) {
+        this.id = id;
+        this.Coffeename = coffeename;
+        this.Coffeekind = coffeekind;
+        this.Milkinside = milkinside;
 
     }
 
-    public Coffee(){};
-
-    public int getCoffeeid() {
-        return coffeeid;
+    public Coffee() {
     }
 
-    public void setCoffeeid(int coffeeid) {
-        this.coffeeid = coffeeid;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCoffeename() {

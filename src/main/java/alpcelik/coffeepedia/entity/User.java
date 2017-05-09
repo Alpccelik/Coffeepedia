@@ -20,7 +20,7 @@ public class User implements UserDetails {
     private Set<UserRole> roles;
     private Integer userPoint = 0;
 
-    public User() {
+    public User(String username, String password, String email, String name) {
     }
 
     public User(Integer id, String username, String email, String password, String coffeeMachine, Set<UserRole> roles, Integer userPoint) {

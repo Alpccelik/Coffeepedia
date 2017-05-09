@@ -5,32 +5,56 @@ import alpcelik.coffeepedia.entity.Coffee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.security.InvalidParameterException;
 
 /**
  * Created by alp on 13/03/17.
  */
 @Service
 public class CoffeeService {
-    @Autowired
     private CoffeeDao coffeeDao;
-    public Collection<Coffee> getAllCoffees(){
-        return coffeeDao.getAllCoffees();
 
-    }
-    public Coffee getCoffeeById(int id){
-        return  this.coffeeDao.getCoffeeById(id);
+    @Autowired
+    public CoffeeService(CoffeeDao coffeeDao) {
+        this.coffeeDao = coffeeDao;
     }
 
-    public void removeCoffeeById(int id) {
-        this.coffeeDao.removeCoffeeById(id);
+    public Coffee create() {
+        return coffeeDao.save(new Coffee());
     }
 
-    public void updateCoffee(Coffee coffee){
-        this.coffeeDao.updateCoffee(coffee);
+    public Coffee update(Coffee coffee) {
+        if (coffeeDao.findOne(coffee.getId()) != null) {
+            return coffeeDao.save(coffee);
+        }
+        throw new InvalidParameterException();
     }
 
-    public void insertCoffee(Coffee coffee) {
-        this.coffeeDao.insertCoffeeToDb(coffee);
+    public void addNewItem(Integer id) {
+        Coffee coffee = coffeeDao.getOne(id);
+        coffeeDao.save(coffee);
+
+
     }
+
+    public void updateCoffeeName(Integer id, String coffeename) {
+        Coffee coffee = coffeeDao.findOne(id);
+        if (coffee != null) {
+            coffee.setCoffeename(coffeename);
+            coffeeDao.save(coffee);
+        } else {
+            throw new InvalidParameterException();
+        }
+    }
+
+
+    public void deleteCoffee(Integer id) {
+        Coffee coffee = coffeeDao.findOne(id);
+        coffeeDao.delete(coffee);
+    }
+
+
+
 }
+
+

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     private UserService userService;
-
     @Autowired
     public CustomUserDetailsService(UserService userService) {
         this.userService = userService;
@@ -18,6 +17,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return userService.getByUsername(s);
+        return userService.findEnabledUser(s);
     }
 }

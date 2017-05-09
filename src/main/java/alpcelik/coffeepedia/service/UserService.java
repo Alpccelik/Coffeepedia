@@ -1,66 +1,47 @@
 package alpcelik.coffeepedia.service;
 
+import alpcelik.coffeepedia.controller.viewmodel.UserCreateViewModel;
+import alpcelik.coffeepedia.dao.UserDao;
 import alpcelik.coffeepedia.entity.User;
-import alpcelik.coffeepedia.enums.UserRole;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
 
-
-/**
- * Created by alp on 12/03/17.
- */
-
-@Repository
+@Service
 public class UserService {
-    public static List<User> users = Arrays.asList(
-            new User(1, "alp", "alpcelik3@gmail.com", "deneme123", "Krups", new HashSet<>(Arrays.asList(UserRole.ADMIN, UserRole.USER)), 0),
-            new User(2, "bugra", "bugra@gmail.com", "deneme123", "Delongi", new HashSet<>(Collections.singleton(UserRole.USER)), 0));
+    private UserDao userDao;
 
-
-    public Collection<User> getAllUsers() {
-        return users;
+    @Autowired
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
-    public User getUserById(int id) {
-        return UserService.users.get(id);
-    }
-
-    public void removeUserById(int id) {
-        Optional<User> user = users.stream().filter(u -> u.getId().equals(id)).findAny();
-        if (user.isPresent()) {
-            users.remove(user.get());
+    public boolean createUser(UserCreateViewModel viewModel) {
+        if (userDao.findOneByUsernameOrEmail(viewModel.getUsername(), viewModel.getEmail()) == null) {
+            if (userDao.save(new User(viewModel.getUsername(), viewModel.getPassword(), viewModel.getEmail(), viewModel.getName())) != null) {
+                return true;
+            }
         }
+        return false;
     }
 
-    public User findOneById(int id) {
-        return users.stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
+
+    public User getUserById(Long id) {
+        return userDao.getUserById(id);
     }
 
-    public void updateUser(User user) {
-        if (user == null) {
-            throw new IllegalArgumentException("User should be not null!");
-        }
-        Optional<User> onListOpt = users.stream().filter(u -> u.getId().equals(user.getId())).findAny();
 
-        if (onListOpt.isPresent()) {
-            User onList = onListOpt.get();
-            users.remove(onList);
-            users.add(user);
-        } else {
-            throw new IllegalArgumentException("User not on the list!");
-        }
+    public List<User> findAll() {
+        return userDao.findAll();
     }
 
-    public void insertUserToDb(User user) {
-        Optional<User> onListOpt = users.stream().filter(u -> u.getId().equals(user.getId())).findAny();
-        onListOpt.ifPresent(user1 -> {
-            throw new IllegalArgumentException("User already on the list!");
-        });
-        users.add(user);
+    public User findEnabledUser(String username) {
+        return userDao.findOneByUsernameAndEnabledTrue(username);
     }
 
-    public User getByUsername(String username) {
-        return users.stream().filter(u -> u.getUsername().equals(username)).findAny().orElse(null);
-    }
 }
+
+
+
+
